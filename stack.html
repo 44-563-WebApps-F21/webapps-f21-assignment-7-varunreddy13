@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Stack page</title>
+    <style>
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            background-color: rgb(211, 14, 152);
+        }
+
+        .flex-container>div {
+            /*div children of the flex container*/
+            background-color: #f1f1f1;
+            margin: 10px;
+            padding: 20px;
+            font-size: 30px;
+        }
+
+        /* Responsive layout */
+        @media (max-width: 600px) {
+            .flex-container {
+                flex-direction: column;
+                background-color: green;
+            }
+        }
+    </style>
+</head>
+
+<h3>Varun Reddy Musku builds a stack</h3>
+
+<body>
+    <input type="text" id="name"> <br> <br> 
+    <div class="flex-container " id="target">
+        <div class="stack">row item 1</div>
+        <div class="stack">row item 2</div>
+        <div class="stack">row item 3</div>
+    </div>
+    <br> <br>
+    
+    
+    <button onclick="makeNewDiv()">Push value</button>
+    <button onclick="popItem()">Pop</button>
+    <button onclick="zap()">Zap Values</button>
+    <button onclick="uniqueHandler()">unique</button>
+    
+
+
+
+    <script>
+        function makeNewDiv() {
+            /* make the div and its text */
+            let element = document.createElement("div")
+            element.innerHTML = document.getElementById("name").value
+            element.className = "stack"
+            /* add it to the container */
+            document.getElementById('target').appendChild(element)
+
+        }
+        function popItem() {
+            item = document.getElementsByClassName("stack")
+            length = item.length
+            if (item != undefined && length > 0) {
+                item[length - 1].remove()
+            }
+        }
+        function zap() {
+            item1 = document.getElementsByClassName("stack")
+            element = document.getElementById("name").value
+            if (item1 != undefined && item1.length > 0) {
+                for (let i = 0; i < item1.length; i++) {
+                    e = item1[i].innerHTML
+                    if (e == element) {
+                        console.log(e)
+                        item1[i].remove()
+                        i--
+                    }
+                }
+
+            }
+        }
+        function uniqueHandler() {
+        let stack_values = document.getElementsByClassName('stack');
+        for (let i = 0; i < stack_values.length; i++) {
+            e1 = stack_values[i].innerHTML;
+            for (let j = i + 1; j < stack_values.length; j++) {
+                e2= stack_values[j].innerHTML;
+                if (e1 == e2) {
+                    stack_values[j].remove();
+                    j--;
+                    i--;
+                }
+            }
+
+        }
+    }
+        
+    </script>
+</body>
+
+</html>
